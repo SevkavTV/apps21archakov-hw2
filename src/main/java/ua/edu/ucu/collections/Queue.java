@@ -9,10 +9,14 @@ public class Queue {
     }
 
     public Object dequeue() {
-        return queue.getLast();
+        Object first = peek();
+        queue = queue.removeFirst();
+        return first;
     }
 
     public void enqueue(Object e) {
         queue = queue.addLast(e);
     }
 }
+
+

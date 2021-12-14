@@ -32,12 +32,13 @@ public final class ImmutableArrayList implements ImmutableList {
     @Override
     public ImmutableList addAll(int index, Object[] c) {
         if(index >= 0 && index <= size()) {
+            Object[] immutableArrayListCopy = toArray();
             Object[] immutableArrayListExpanded = new Object[size()+c.length];
             int curr_ind = 0;
             int prev_ind = 0;
 
             while(curr_ind < index) {
-                immutableArrayListExpanded[curr_ind] = immutableArrayList[prev_ind];
+                immutableArrayListExpanded[curr_ind] = immutableArrayListCopy[prev_ind];
                 curr_ind++;
                 prev_ind++;
             }
@@ -48,7 +49,7 @@ public final class ImmutableArrayList implements ImmutableList {
             }
 
             while (curr_ind < size() + c.length) {
-                immutableArrayListExpanded[curr_ind] = immutableArrayListExpanded[prev_ind];
+                immutableArrayListExpanded[curr_ind] = immutableArrayListCopy[prev_ind];
                 curr_ind++;
                 prev_ind++;
             }
@@ -71,14 +72,13 @@ public final class ImmutableArrayList implements ImmutableList {
     public ImmutableList remove(int index) {
         if(index >= 0 && index < size()) {
             Object[] immutableArrayListDecreased = new Object[size()-1];
-            for(int i = 0; i < size(); i++) {
+            for(int i = 0; i < size()-1; i++) {
                 if(i < index) {
                     immutableArrayListDecreased[i] = get(i);
-                } else if (i > index) {
+                } else if (i >= index) {
                     immutableArrayListDecreased[i] = get(i+1);
                 }
             }
-
             return new ImmutableArrayList(immutableArrayListDecreased);
         }
 

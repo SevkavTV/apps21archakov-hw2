@@ -45,13 +45,14 @@ public final class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public ImmutableList addAll(int index, Object[] c) {
-        if(index >= 0 && index < size()) {
+        if(index >= 0 && index <= size()) {
+            Object[] immutableLinkedListCopy = toArray();
             Object[] immutableLinkedListExpanded = new Object[size()+c.length];
             int curr_ind = 0;
             int prev_ind = 0;
 
             while(curr_ind < index) {
-                immutableLinkedListExpanded[curr_ind] = immutableLinkedListExpanded[prev_ind];
+                immutableLinkedListExpanded[curr_ind] = immutableLinkedListCopy[prev_ind];
                 curr_ind++;
                 prev_ind++;
             }
@@ -62,7 +63,7 @@ public final class ImmutableLinkedList implements ImmutableList {
             }
 
             while (curr_ind < size() + c.length) {
-                immutableLinkedListExpanded[curr_ind] = immutableLinkedListExpanded[prev_ind];
+                immutableLinkedListExpanded[curr_ind] = immutableLinkedListCopy[prev_ind];
                 curr_ind++;
                 prev_ind++;
             }
@@ -86,10 +87,10 @@ public final class ImmutableLinkedList implements ImmutableList {
     public ImmutableList remove(int index) {
         if(index >= 0 && index < size()) {
             Object[] immutableLinkedListDecreased = new Object[size()-1];
-            for(int i = 0; i < size(); i++) {
+            for(int i = 0; i < size()-1; i++) {
                 if(i < index) {
                     immutableLinkedListDecreased[i] = get(i);
-                } else if (i > index) {
+                } else if (i >= index) {
                     immutableLinkedListDecreased[i] = get(i+1);
                 }
             }

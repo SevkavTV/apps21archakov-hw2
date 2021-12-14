@@ -124,7 +124,7 @@ public final class ImmutableLinkedList implements ImmutableList {
             currInd++;
         }
 
-        if(currInd == size()) {
+        if (currInd == size()) {
             return -1;
         }
 

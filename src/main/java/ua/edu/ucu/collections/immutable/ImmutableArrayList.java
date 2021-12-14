@@ -100,7 +100,7 @@ public final class ImmutableArrayList implements ImmutableList {
     @Override
     public int indexOf(Object e) {
         for (int i = 0; i < size(); i++) {
-            if(e.equals(get(i))) {
+            if (e.equals(get(i))) {
                 return i;
             }
         }

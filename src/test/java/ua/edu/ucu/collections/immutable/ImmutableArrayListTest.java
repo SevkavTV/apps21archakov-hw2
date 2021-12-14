@@ -89,10 +89,10 @@ public class ImmutableArrayListTest{
     @Test
     public void testIndexOf() {
         int i1 = immutableArrayList.indexOf(1);
-        int i2 = immutableArrayList.indexOf(2);
+        int i2 = immutableArrayList.indexOf(49);
 
         assertEquals(i1, 0);
-        assertEquals(i2, 1);
+        assertEquals(i2, -1);
     }
 
     @Test

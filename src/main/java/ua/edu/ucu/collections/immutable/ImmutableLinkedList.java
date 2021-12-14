@@ -90,7 +90,7 @@ public final class ImmutableLinkedList implements ImmutableList {
             for(int i = 0; i < size()-1; i++) {
                 if(i < index) {
                     immutableLinkedListDecreased[i] = get(i);
-                } else if (i >= index) {
+                } else {
                     immutableLinkedListDecreased[i] = get(i+1);
                 }
             }

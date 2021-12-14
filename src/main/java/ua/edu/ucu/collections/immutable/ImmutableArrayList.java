@@ -75,7 +75,7 @@ public final class ImmutableArrayList implements ImmutableList {
             for(int i = 0; i < size()-1; i++) {
                 if(i < index) {
                     immutableArrayListDecreased[i] = get(i);
-                } else if (i >= index) {
+                } else {
                     immutableArrayListDecreased[i] = get(i+1);
                 }
             }

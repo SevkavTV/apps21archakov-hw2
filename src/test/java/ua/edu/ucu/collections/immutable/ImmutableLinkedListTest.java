@@ -90,10 +90,10 @@ public class ImmutableLinkedListTest{
     @Test
     public void testIndexOf() {
         int i1 = immutableLinkedList.indexOf(1);
-        int i2 = immutableLinkedList.indexOf(2);
+        int i2 = immutableLinkedList.indexOf(49);
 
         assertEquals(i1, 0);
-        assertEquals(i2, 1);
+        assertEquals(i2, -1);
     }
 
     @Test
@@ -143,9 +143,19 @@ public class ImmutableLinkedListTest{
         assertEquals(immutableLinkedList.getFirst(), 1);
     }
 
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testGetFirstNull() {
+        new ImmutableLinkedList().getFirst();
+    }
+
     @Test
     public void testGetLast() {
         assertEquals(immutableLinkedList.getLast(), 8);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testGetLastNull() {
+        new ImmutableLinkedList().getFirst();
     }
 
     @Test

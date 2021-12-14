@@ -6,12 +6,12 @@ public final class ImmutableLinkedList implements ImmutableList {
 
     public ImmutableLinkedList(Object[] elements) {
         Node prev = null;
-        for(Object elem: elements) {
-            final Node currNode = new Node();
+        for (Object elem: elements) {
+            Node currNode = new Node();
             currNode.setPrevious(prev);
             currNode.setValue(elem);
 
-            if(prev == null) {
+            if (prev == null) {
                 head = currNode;
             } else {
                 prev.setNext(currNode);
@@ -45,27 +45,29 @@ public final class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public ImmutableList addAll(int index, Object[] c) {
-        if(index >= 0 && index <= size()) {
+        if (index >= 0 && index <= size()) {
             Object[] immutableLinkedListCopy = toArray();
             Object[] immutableLinkedListExpanded = new Object[size()+c.length];
-            int curr_ind = 0;
-            int prev_ind = 0;
+            int currInd = 0;
+            int prevInd = 0;
 
-            while(curr_ind < index) {
-                immutableLinkedListExpanded[curr_ind] = immutableLinkedListCopy[prev_ind];
-                curr_ind++;
-                prev_ind++;
+            while (currInd < index) {
+                immutableLinkedListExpanded[currInd] =
+                        immutableLinkedListCopy[prevInd];
+                currInd++;
+                prevInd++;
             }
 
-            for(Object elem: c) {
-                immutableLinkedListExpanded[curr_ind] = elem;
-                curr_ind++;
+            for (Object elem: c) {
+                immutableLinkedListExpanded[currInd] = elem;
+                currInd++;
             }
 
-            while (curr_ind < size() + c.length) {
-                immutableLinkedListExpanded[curr_ind] = immutableLinkedListCopy[prev_ind];
-                curr_ind++;
-                prev_ind++;
+            while (currInd < size() + c.length) {
+                immutableLinkedListExpanded[currInd] =
+                        immutableLinkedListCopy[prevInd];
+                currInd++;
+                prevInd++;
             }
             return new ImmutableLinkedList(immutableLinkedListExpanded);
         }
@@ -75,7 +77,7 @@ public final class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public Object get(int index) {
-        if(index >= 0 && index < size()) {
+        if (index >= 0 && index < size()) {
             Object[] immutableLinkedListCopy = toArray();
             return immutableLinkedListCopy[index];
         }
@@ -85,10 +87,10 @@ public final class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public ImmutableList remove(int index) {
-        if(index >= 0 && index < size()) {
+        if (index >= 0 && index < size()) {
             Object[] immutableLinkedListDecreased = new Object[size()-1];
-            for(int i = 0; i < size()-1; i++) {
-                if(i < index) {
+            for (int i = 0; i < size()-1; i++) {
+                if (i < index) {
                     immutableLinkedListDecreased[i] = get(i);
                 } else {
                     immutableLinkedListDecreased[i] = get(i+1);
@@ -103,7 +105,7 @@ public final class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public ImmutableList set(int index, Object e) {
-        if(index >= 0 && index < size()) {
+        if (index >= 0 && index < size()) {
             Object[] immutableLinkedListCopy = toArray();
             immutableLinkedListCopy[index] = e;
             return new ImmutableLinkedList(immutableLinkedListCopy);
@@ -117,7 +119,7 @@ public final class ImmutableLinkedList implements ImmutableList {
         int currInd = 0;
         Node currNode = getHead();
 
-        while(currNode != null && !currNode.getValue().equals(e)) {
+        while (currNode != null && !currNode.getValue().equals(e)) {
             currNode = currNode.getNext();
             currInd++;
         }
@@ -133,7 +135,7 @@ public final class ImmutableLinkedList implements ImmutableList {
     public int size() {
         int listSize = 0;
         Node currNode = getHead();
-        while(currNode != null) {
+        while (currNode != null) {
             listSize++;
             currNode = currNode.getNext();
         }
@@ -157,7 +159,7 @@ public final class ImmutableLinkedList implements ImmutableList {
         Node currNode = getHead();
         Object[] result = new Object[size()];
 
-        while(currNode != null) {
+        while (currNode != null) {
             result[currInd] = currNode.getValue();
             currNode = currNode.getNext();
             currInd++;
@@ -183,7 +185,7 @@ public final class ImmutableLinkedList implements ImmutableList {
     }
 
     public Object getFirst() {
-        if(size() > 0) {
+        if (size() > 0) {
             return head.getValue();
         }
 
@@ -191,7 +193,7 @@ public final class ImmutableLinkedList implements ImmutableList {
     }
 
     public Object getLast() {
-        if(size() > 0) {
+        if (size() > 0) {
             return tail.getValue();
         }
 

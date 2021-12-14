@@ -155,7 +155,7 @@ public class ImmutableLinkedListTest{
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void testGetLastNull() {
-        new ImmutableLinkedList().getFirst();
+        new ImmutableLinkedList().getLast();
     }
 
     @Test
